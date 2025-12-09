@@ -6,12 +6,10 @@ import java.util.List;
 public class DataRetriever {
     private DBConnection dbConnection;
 
-    // Constructeur : on injecte la DBConnection
     public DataRetriever(DBConnection dbConnection) {
         this.dbConnection = dbConnection;
     }
 
-    // 1. Lire toutes les catégories
     public List<Category> getAllCategories() {
         List<Category> categories = new ArrayList<>();
         String sql = "SELECT id, name FROM Product_category";
@@ -31,7 +29,6 @@ public class DataRetriever {
         return categories;
     }
 
-    // 2. Lire les produits avec pagination
     public List<Product> getProductList(int page, int size) {
         List<Product> products = new ArrayList<>();
         int offset = (page - 1) * size;
@@ -68,7 +65,6 @@ public class DataRetriever {
         return products;
     }
 
-    // 3. Lire les produits par critères
     public List<Product> getProductsByCriteria(String productName, String categoryName,
                                                Instant creationMin, Instant creationMax) {
         List<Product> products = new ArrayList<>();
@@ -125,7 +121,6 @@ public class DataRetriever {
         return products;
     }
 
-    // 4. Lire les produits par critères + pagination
     public List<Product> getProductsByCriteria(String productName, String categoryName,
                                                Instant creationMin, Instant creationMax,
                                                int page, int size) {
